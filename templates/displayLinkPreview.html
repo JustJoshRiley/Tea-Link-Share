@@ -1,0 +1,14 @@
+{% extends 'display.html' %}
+
+{% block displayLink %}
+    <main>
+        <h1>Working</h1>
+        {% for link in links %}
+            <!-- <div>{{ links.category }}</div> -->
+            <div>{{ link.url }}</div>
+
+        {% endfor %}
+    </main>
+
+
+{% endblock displayLink %}
