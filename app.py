@@ -53,7 +53,7 @@ def home():
         # print(new_link['url'], 'users url')
         users_url = new_link['url']
         url = f'https://api.linkpreview.net?key={API_KEY}&q={users_url}'
-        print(API_KEY)
+        # print(API_KEY)
         print(users_url)
         response = requests.request("POST", url)
         # print(response.text, 'response')
