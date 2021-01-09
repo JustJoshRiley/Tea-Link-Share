@@ -42,28 +42,38 @@ fieldset {
 .disappearing-message-5, .disappearing-message-6, .disappearing-message-7 {
     font-size: 30px;
     /* font-weight:900; */
-    animation-delay: 10s;
     animation-timing-function: linear;
-    animation: fadeInMessage 4s;
-    font-family: Arial, sans-serif;
+    animation: fadeInMessage 10s;
+    font-family: 'Courier New', Courier, monospace sans-serif;
     color: white;
+    margin-top: 5%;
+    margin-left: 10%;
 
 }
-
-@keyframes fadeInMessage{
-    0% {
-        opacity: 0;
-    }
-    /* 50% {
-        opacity: .5;
-    } */
-    100% {
-        opacity: 1;
-    }
+.disappearing-message-2, .disappearing-message-5 {
+    font-weight: 900;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
 }
+@keyframes example {
+    0%   {color: white;}
+    25%  {color: rgb(206, 206, 193);}
+    50%  {color: rgb(156, 156, 160);}
+    100% {color: rgb(209, 209, 209);}
+}
+
+
 .click-me:hover{
     border-top: ridge red;
     border-bottom: ridge red;
+}
+
+.category-link {
+    border-top-width: 1px; 
+    border-color: teal;
+    border-style: ridge;
 }
 
 /* footer  */

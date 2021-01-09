@@ -17,62 +17,66 @@ API_KEY = os.getenv('API_KEY')
 
 import requests
 
+categories = {
+    "UI/UX": [ ],
+    "Frontend": [ ],
+    "Backend": [ ],
+    "Career": [ ]
+}
 
-links = [
-    {"category":"UI/UX"},
-    {"category": "Frontend"},
-    {"category": "Backend"},
-    {"category": "Career"},
-    {"category": "Hiring"},
-
-]
-mongo.db.links.drop()
-
-mongo.db.links.insert_many(links)
+mongo.db.categories.insert_one(categories)
 
 @app.route('/', methods =["GET","POST"])
 def home():
     
+    
     if request.method == "GET":
-        all_of_links = mongo.db.links.find()
 
-        context = {
-            'links' : all_of_links,
-        }
-
-        return render_template('index.html', **context)
+        return render_template('index.html')
 
     if request.method == "POST":
-        # mongo.db.links.drop()
+        # find the cateogry from db
+        # grab the list of urls from ^
+        # append the next url
+        # update one with the list
+        userCategory = request.form.get("link-category")
 
         new_link = {
-            "category" : request.form.get("link-category"),
-            "url": request.form.get("add-link-modal-url")
+            "url": request.form.get("add-link-modal-url"),
+            "image_url": "",
+            "title": "",
+            "description": ""
         }
         
-        # print(new_link['url'], 'users url')
         users_url = new_link['url']
         url = f'https://api.linkpreview.net?key={API_KEY}&q={users_url}'
-        # print(API_KEY)
-        print(users_url)
         response = requests.request("POST", url)
-        # print(response.text, 'response')
+        item_json = response.json()
 
+        new_link["image_url"] = item_json["image"]
+        new_link["description"] = item_json["description"][0:110]
+        new_link["title"] = item_json["title"]
+        
+        # mongo.db.new_link.drop()
+        mongo.db.new_link.insert_one(new_link)
 
+        if userCategory == mongo.db.categories.find(userCategory)
 
-        mongo.db.links.update_one(new_link)
-
-
-        # print(new_link, 'user validate')
-
+        ui_links = mongo.db.new_link.find({'category':'UI/UX'})
         context = {
-            "links" : links
+            'ui_links' : ui_links
         }
         
-        for link in links:
-            print(link)
+        
+        print(f'{new_link}')
 
-    return render_template('displayLinkPreview.html', **context)
+    return render_template('display.html', **context)
+
+
+@app.route('/templates/display.html', methods = ["POST"])
+def allLinks():
+
+    return None
 
 
 

@@ -34,9 +34,10 @@
                                                     <label  style="text-align: center; width: 25vw; height: 3vh; margin-bottom: 25%; font-weight: bold;" for="link-category">Chose a Category:
                                                         <select style="  width: 23vw; height: 3vh; " name="link-category" id="link-category">
                                                             <option disabled selected value> -- select an option -- </option>
-                                                            {% for category in links %}
-                                                            <option aria-required="true" required value="{{ category.category }}">{{ category.category }}</option>
-                                                            {% endfor %}
+                                                            <option aria-required="true" required value="UI/UX">UI/UX</option>
+                                                            <option aria-required="true" required value="Frontend">Frontend</option>
+                                                            <option aria-required="true" required value="Backend">Backend</option>
+                                                            <option aria-required="true" required value="Career">Career</option>
                                                         </select>
                                                     </label>
                                                     <label style="text-align: center; width: 25vw; height: 3vh; font-weight: 900; margin-bottom: 20%;"  for="add-link-modal-url">Url:
@@ -57,28 +58,40 @@
             </div>
         </div>
         <!-- nav bar  -->
-        <nav class="navbar" style="height: 12vh; width: 100%; position: fixed; top: 0%; background-color: white; z-index: 5;">
-            <div class="container-fluid">
+        <nav class="navbar" style="height: 12vh; width: 100%; position: fixed; top: 0%; background-color:transparent ">
                 <div class="row">
-                    <a class="navbar-name" style="text-decoration:none; color: mediumaquamarine; font-weight:900;" href="https://www.urbandictionary.com/define.php?term=tea"><h1>Tea.</h1></a>
+                    <a class="navbar-name" style="text-decoration:none; color: mediumaquamarine; font-weight:900; margin-left: 10%;" href="https://www.urbandictionary.com/define.php?term=tea"><h1>Tea.</h1></a>
                 </div>
                 <a href="/templates/index.html" data-toggle="modal" style="text-decoration:none; outline: none;" data-target="#addLinkModal">
                     <img src="/static/142_share_arrow_outline.gif" style=" height:8vh; border:none; outline: none; ">
                     <img src="/static/238_coffee_take_away_outline 2.gif" style="height: 10vh; border: none; outline: none;"/>
                 </a>
-            </div>
                 
         </nav>
 
-        <main style="background-color: white; margin-top: 7%;  height: 100vh; position: fixed;">
-            <div class="container-categories row" style=" width: 100vw; height: 10vh; text-align: center; font-size: 1rem;  vertical-align: 0%; ">
-                <div>
-                    {% for category in links %}
-                    <button style=" margin: .5%; height: 6vh; width: 10vw; border-top-color:red; " id="button_{{category.id}}" class="click-me btn btn-lg">{{ category.category }}</button>
-                    {% endfor %}
-                </div>
+        <main style="  height: 100vh; width: 100vw;">
+            <div class="container-categories row" style="height: 10vh; width: 90vw; margin-bottom: 2%; margin-top: 12vh; margin-left: 5%; display: flex; align-items: center;">
+                <button style=" height: 6vh; width: 10vw; border-top-color:red; " id="{{ ui_links._id }}" class="click-me btn btn-lg">{{ ui_links.category }}</button>
+                <button style="  height: 6vh; width: 10vw; border-top-color:red; "class="click-me btn btn-lg">Button</button>
             </div>
-            {% block displayLink%} {% endblock %}
+            
+            <!-- display card  -->
+            <div class="container" style=" height: 25vh; width: 100vw; background-color: rgba(236, 236, 236, 0.582); border-radius: 20px; display: flex; align-items: center;  overflow-x: visible; ">
+            
+            
+                <div style="overflow: scroll; display: flex; flex-direction: row; margin-bottom: 0%; ">
+                    {% for link in ui_links %}
+                    <div class="col" style="height: 18.25vh; min-width: 32vw!important; max-width: 30vw!important; background-color: rgb(255, 255, 255); display: flex; flex-direction: row; border-radius: 20px; overflow-x:hidden; overflow-y: hidden; margin-left: 2.5%; ">
+                        <img style="height: 18.25vh; width: 15vw; border-radius: 20px; margin: 0px; padding: 0px; border: hidden;"  src="{{ link.image_url }}"  alt="Image Not Found">
+                        <div class="p-4 md:p-5" style="height: 18.25vh; width: 15vw; top: 0px; background-color: transparent;  border-left-color: black; border-radius: 20px">
+                            <h6 class="font-bolder" style="margin-bottom: 5%; margin-top: 0%!important; font-size: 1.25rem; width: fit-content;">{{ link.title }}</h6>
+                            <a class="category-link" style="width: 15vw; height: 15vh; color: rgb(92, 92, 92);" href="{{ link.url }}">{{ link.url }}</a>
+                        </div>
+                    </div>
+                    {%  endfor %}
+                </div>
+
+            </div>
         </main>
         <footer class="container" style="width: 100%;">
             <div class="row" style=" margin-left: 70%; color: rgb(161, 123, 26); position: absolute; bottom: 0px;">
