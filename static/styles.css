@@ -68,12 +68,24 @@ fieldset {
 .click-me:hover{
     border-top: ridge red;
     border-bottom: ridge red;
+    border-left: red;
+    border-right: red;
 }
 
-.category-link {
-    border-top-width: 1px; 
-    border-color: teal;
-    border-style: ridge;
+/* .category-link {
+
+} */
+.url-link {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
+/* .links {
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+} */
+/* .links:hover {
+    
+} */
+
 
 /* footer  */

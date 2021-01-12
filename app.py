@@ -14,33 +14,40 @@ mongo = PyMongo(app)
 # api key from env 
 API_KEY = os.getenv('API_KEY')
 
-
 import requests
 
-categories = {
-    "UI/UX": [ ],
-    "Frontend": [ ],
-    "Backend": [ ],
-    "Career": [ ]
-}
+categories_list = [
+    {
+        "name": "UI/UX",
+        "data": [],
+    },
+    {
+        "name": "Frontend",
+        "data": [],
+    },
+    {
+        "name": "Backend",
+        "data": [],
+    },
+    {
+        "name": "Career",
+        "data": [],
+    }
+]
 
-mongo.db.categories.insert_one(categories)
+# mongo.db.categories.drop()
+# mongo.db.categories.insert_many(categories_list)
 
 @app.route('/', methods =["GET","POST"])
 def home():
-    
-    
     if request.method == "GET":
-
-        return render_template('index.html')
+        context = {
+            'categories_list' : categories_list
+        }
+        return render_template('index.html', **context)
 
     if request.method == "POST":
-        # find the cateogry from db
-        # grab the list of urls from ^
-        # append the next url
-        # update one with the list
-        userCategory = request.form.get("link-category")
-
+        category_name =  str(request.form.get("link-category"))
         new_link = {
             "url": request.form.get("add-link-modal-url"),
             "image_url": "",
@@ -56,27 +63,17 @@ def home():
         new_link["image_url"] = item_json["image"]
         new_link["description"] = item_json["description"][0:110]
         new_link["title"] = item_json["title"]
-        
-        # mongo.db.new_link.drop()
-        mongo.db.new_link.insert_one(new_link)
 
-        if userCategory == mongo.db.categories.find(userCategory)
+        category = mongo.db.categories.find_one({"name" : category_name})
+        data_list = category["data"]
+        data_list.append(new_link)
 
-        ui_links = mongo.db.new_link.find({'category':'UI/UX'})
+        mongo.db.categories.update_one({"name": category_name}, {"$set": {"data": data_list}})
+        variable = list(mongo.db.categories.find({}))
         context = {
-            'ui_links' : ui_links
+            'categories_list': variable
         }
-        
-        
-        print(f'{new_link}')
-
     return render_template('display.html', **context)
-
-
-@app.route('/templates/display.html', methods = ["POST"])
-def allLinks():
-
-    return None
 
 
 
