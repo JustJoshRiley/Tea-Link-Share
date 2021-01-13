@@ -35,8 +35,8 @@ categories_list = [
     }
 ]
 
-# mongo.db.categories.drop()
-# mongo.db.categories.insert_many(categories_list)
+mongo.db.categories.drop()
+mongo.db.categories.insert_many(categories_list)
 
 @app.route('/', methods =["GET","POST"])
 def home():
@@ -65,6 +65,7 @@ def home():
         new_link["title"] = item_json["title"]
 
         category = mongo.db.categories.find_one({"name" : category_name})
+
         data_list = category["data"]
         data_list.append(new_link)
 

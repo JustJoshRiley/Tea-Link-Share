@@ -83,12 +83,12 @@
                     {% for item in category.data %}
                     <div style=" margin-top: 4%;">
                         <div class="col links" style="height: 18.25vh; max-width: 30vw!important; background-color: rgb(255, 255, 255); display: flex; flex-direction: row; border-radius: 20px; overflow: hidden; margin-left: 10%; ">
-                            <img style="height: 10.25vh; width: 10vw; border-radius: 20px; border: hidden;"  src="{{ item.image_url }}"  alt="Image Not Found" >
+                            <img style="height: 10.25vh; width: 10vw; border-radius: 20px; border: hidden;"  src="{{ item.image_url }}"  alt="No Image Available" >
                             <div class="p-4 md:p-5" style="height: 18.25vh; width: 15vw; top: 0px; background-color: transparent; border-radius: 20px; overflow: hidden;">
                                 <h6 class="font-bolder" style="margin-top: -10%!important; font-size: 1.25rem; width: fit-content; ">{{ item.title }}</h6>
-                                <div style=" width: 12vw; height: 10vh; text-align: left; display: flex; align-items: center; border-top: black thin; overflow: hidden; ">
+                                <div style="margin-top: -10%; width: 12vw; height: 10vh; text-align: left; display: flex; align-items: center; border-top: black thin; overflow: hidden; ">
                                     <p class="url-link" style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto"> 
-                                        <a class="category-link" style=" color: rgb(92, 92, 92); font-size: .75rem; " href="{{ item.url }}">{{ item.description }}</a>
+                                        <a class="category-link" style=" color: rgb(92, 92, 92); font-size: .75rem; " href="{{ item.url }}">{{ item.url }}</a>
                                     </p>
                                     <button class=""></button>
                                 </div>
