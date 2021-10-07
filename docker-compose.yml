@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  # db:
+  #     image: mongodb
+  #     hostname: tea_db
+  #     environment:
+  #       - MONGO_INIT_DB=tea
+  #       - MONGO_INIT_ROOT_USERNAME=root
+  #       - MONGO_INIT_DB_ROOT_PASSWORD=pass
+
+
+  web:
+    build: .
+    command: python app.py runserver 0.0.0.0:5000
+    ports:
+      - "5000:5000"
+    # depends_on:
+    #     - db
+

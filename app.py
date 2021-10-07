@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
+app.config["MONGO_URI"] = "mongodb://root:thisisSparta!@srv-captain--mongo/mydatabase?authSource=admin"
 mongo = PyMongo(app)
 
 # api key from env 
@@ -79,4 +79,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="localhost",debug=True)
