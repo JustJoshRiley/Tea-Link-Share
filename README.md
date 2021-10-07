@@ -15,7 +15,7 @@ Wait no further, Tea is a link sharing website by computer science for computer 
 
 ## Visit
 
-[Gif Search](http://tea-link-share.dev.justjoshriley.com)
+[Tea Link Share](http://tea-link-share.dev.justjoshriley.com)
 
 ## How to Use
 
