@@ -6,7 +6,7 @@ Wait no further, Tea is a link sharing website by computer science for computer 
 
 <div align="center">
   <a href="https://statuspage.freshping.io/56547-justjoshriley">  
-    <img src="https://img.shields.io/line&up_color=green&up_message=online&url=http://tea-link-share.dev.justjoshriley.com" />
+    <img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=http%3A%2F%2Ftea-link-share.dev.justjoshriley.com%2F" />
   </a>
   <a href="http://tea-link-share.dev.justjoshriley.com"> 
     <h1>Tea Link Share</h1>
